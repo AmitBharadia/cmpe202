@@ -1,43 +1,53 @@
+//Its a parent gumball machine that accepts one quarters 
+public class GumballMachine {
 
-public class GumballMachine
-{
+	protected int num_gumballs;
+	protected boolean is_cranckable;
+	protected int amount;
 
-    private int num_gumballs;
-    private boolean has_quarter;
+	public GumballMachine(int size) {
+		// initialise instance variables
+		this.num_gumballs = size;
+		this.is_cranckable = false;
+		this.amount=0;
+	}
 
-    public GumballMachine( int size )
-    {
-        // initialise instance variables
-        this.num_gumballs = size;
-        this.has_quarter = false;
-    }
+	public void insertAmount(int coin) {
+		if (coin == 25){
+			amount+=coin;
+			System.out.println("You can turn the cranck now ");
+			this.is_cranckable = true;
+		}else{
+			System.out.println("You can only insert a quarter here!");
+			this.is_cranckable = false;
+		}
+	}
 
-    public void insertQuarter(int coin)
-    {
-        if ( coin == 25 )
-            this.has_quarter = true ;
-        else 
-            this.has_quarter = false ;
-    }
-    
-    public void turnCrank()
-    {
-    	if ( this.has_quarter )
-    	{
-    		if ( this.num_gumballs > 0 )
-    		{
-    			this.num_gumballs-- ;
-    			this.has_quarter = false ;
-    			System.out.println( "Thanks for your quarter.  Gumball Ejected!" ) ;
-    		}
-    		else
-    		{
-    			System.out.println( "No More Gumballs!  Sorry, can't return your quarter." ) ;
-    		}
-    	}
-    	else 
-    	{
-    		System.out.println( "Please insert a quarter" ) ;
-    	}        
-    }
+	public void turnCrank() {
+		if (this.is_cranckable) {
+			if (this.num_gumballs > 0) {
+				this.num_gumballs--;
+				this.is_cranckable = false;
+				this.amount=0;
+				System.out.println("Thank You.  Gumball Ejected!");
+			} else {
+				System.out.println("No More Gumballs!  Sorry, can't return your quarter.");
+			}
+		} else {
+			printValidMessage();
+		}
+	}
+
+	public void printValidMessage(){
+		System.out.println("Please insert a  quarter here!");
+	}
+
+	@Override
+	public String toString() {
+		return "GumballMachine [num_gumballs=" + num_gumballs + ", is_cranckable=" + is_cranckable + ", amount="
+				+ amount + "]";
+	}
+	
+	
+
 }
