@@ -1,5 +1,5 @@
 //Its a parent gumball machine that accepts one quarters 
-public class GumballMachine {
+class GumballMachine {
 
 	protected int num_gumballs;
 	protected boolean is_cranckable;

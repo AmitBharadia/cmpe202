@@ -2,8 +2,8 @@
 
 public interface State {
  
-	public void insertQuarter();
-	public void ejectQuarter();
+	public void insertAmount(int coin);
+	public void ejectAmount();
 	public void turnCrank();
 	public void dispense();
 }
