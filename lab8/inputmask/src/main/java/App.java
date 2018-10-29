@@ -15,26 +15,15 @@ public class App {
 
         screen = new Screen();
         num = new CreditCardNum();
+        num.wrap(new SpaceDecorator());
         exp = new CreditCardExp();
+        exp.wrap(new DateDecorator());
         cvc = new CreditCardCVC();
-//        CountryCode cc=new CountryCode();
-//        CountryName cn=new CountryName();
-//        PhoneNumber pn=new PhoneNumber();
-//        InputMachine im=new InputMachine();
+
 
         screen.addSubComponent(num);
         screen.addSubComponent(exp);
         screen.addSubComponent(cvc);
-
-//        //Observer For InputMachine
-//        im.registerObserver(cc);
-//        im.registerObserver(pn);
-//
-//        //countryCode observer
-//        cc.registerObserver(cn);
-//        cc.registerObserver(im);
-//        cc.registerObserver(pn);
-//        count = 0;
 
     }
 
@@ -51,8 +40,13 @@ public class App {
     }
 
     public void key(String ch) {
-        count++;
+
+
+        if(!ch.equalsIgnoreCase("x"))
+            count++;
         screen.key(ch, count);
+        if(ch.equalsIgnoreCase("x"))
+            count--;
     }
 
 }

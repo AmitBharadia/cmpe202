@@ -16,6 +16,15 @@ public class Screen implements IScreen, IDisplayComponent
         chain.key(ch, cnt) ;
     }
     
+    public String display() {
+        String value = "" ;
+        for (IDisplayComponent c : components )
+        {
+            value = value + c.display() ;
+        }
+        return value ;
+    }
+
     public void addSubComponent( IDisplayComponent c )
     {
         components.add( c ) ;
@@ -28,15 +37,6 @@ public class Screen implements IScreen, IDisplayComponent
             IKeyEventHandler prev = (IKeyEventHandler) components.get(components.size()-2) ;
             prev.setNext( (IKeyEventHandler) c ) ;
         }
-    }
-    
-    public String display() { 
-        String value = "" ;
-        for (IDisplayComponent c : components )
-        {
-            value = value + c.display() ;
-        }
-        return value ; 
     }
 
     public String name() {
